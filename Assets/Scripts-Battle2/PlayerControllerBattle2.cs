@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 using TMPro;
+using UnityEngine.EventSystems;
 
 public class PlayerControllerBattle2 : MonoBehaviour
 {
@@ -32,6 +33,11 @@ public class PlayerControllerBattle2 : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && canMove)
         {
+            if (EventSystem.current.IsPointerOverGameObject())
+            {
+                return;
+            }
+
             Inst.gameObject.SetActive(false);
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
