@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManagerBattle2 : MonoBehaviour
 {
@@ -15,12 +16,20 @@ public class GameManagerBattle2 : MonoBehaviour
     public Button resume;
     public TextMeshProUGUI gameover;
     public TextMeshProUGUI levelCompleted;
-    public bool search;
+    public Button restart;
+    public Button quit;
+    public GameObject background;
+    public GameObject charac;
 
     private void Start()
     {
+        resume.gameObject.SetActive(false);
+        quit.gameObject.SetActive(false);
+        restart.gameObject.SetActive(false);
+        background.SetActive(false);
+        charac.SetActive(false);
         isActive = true;
-        elapsedTime = 121;
+        elapsedTime = 120.5f;
         minutes = Mathf.FloorToInt(elapsedTime / 60);
         seconds = Mathf.FloorToInt(elapsedTime % 60);
         timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
@@ -59,7 +68,6 @@ public class GameManagerBattle2 : MonoBehaviour
     {
         pause.gameObject.SetActive(false);
         timerText.gameObject.SetActive(false);
-
         if (isActive)
         {
             levelCompleted.gameObject.SetActive(true);
@@ -73,6 +81,10 @@ public class GameManagerBattle2 : MonoBehaviour
         {
             gameover.gameObject.SetActive(true);
         }
+        quit.gameObject.SetActive(true);
+        restart.gameObject.SetActive(true);
+        background.SetActive(true);
+        charac.SetActive(true);
     }
 
     public void Pause()
@@ -80,6 +92,10 @@ public class GameManagerBattle2 : MonoBehaviour
         Debug.Log("Pause button clicked.");
         pause.gameObject.SetActive(false);
         resume.gameObject.SetActive(true);
+        quit.gameObject.SetActive(true);
+        restart.gameObject.SetActive(true);
+        background.SetActive(true);
+        charac.SetActive(true);
         Time.timeScale = 0;
 
         // Ensure NavMeshAgents are paused if necessary
@@ -95,6 +111,10 @@ public class GameManagerBattle2 : MonoBehaviour
         Debug.Log("Resume button clicked.");
         pause.gameObject.SetActive(true);
         resume.gameObject.SetActive(false);
+        quit.gameObject.SetActive(false);
+        restart.gameObject.SetActive(false);
+        background.SetActive(false);
+        charac.SetActive(false);
         Time.timeScale = 1;
 
         // Resume NavMeshAgents if they were paused
@@ -103,5 +123,16 @@ public class GameManagerBattle2 : MonoBehaviour
         {
             agent.isStopped = false;
         }
+    }
+
+    public void Restart()
+    {
+        resume.gameObject.SetActive(false);
+        quit.gameObject.SetActive(false);
+        restart.gameObject.SetActive(false);
+        background.SetActive(false);
+        charac.SetActive(false);
+        Time.timeScale = 1;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
