@@ -17,12 +17,13 @@ public class PlayerControllerBattle2 : MonoBehaviour
     public Animator anim;
     public Animator anim1;
     public Animator anim2;
+    public Animator anim3;
 
     private void Start()
     {
-        anim = GameObject.Find("PlayerCharacter").GetComponent<Animator>();
         anim1 = GameObject.Find("Persian").GetComponent<Animator>();
         anim2 = GameObject.Find("Persian2").GetComponent<Animator>();
+        anim3 = GameObject.Find("Kempe").GetComponent<Animator>();
         Inst.gameObject.SetActive(true);
     }
 
@@ -45,13 +46,13 @@ public class PlayerControllerBattle2 : MonoBehaviour
         {
             anim2.SetBool("IsWalking", true);
             anim1.SetBool("IsWalking", true);
-            anim.SetBool("IsWalking", true);
+            anim3.SetBool("IsWalking", true);
         }
         else
         {
             anim2.SetBool("IsWalking", false);
             anim1.SetBool("IsWalking", false);
-            anim.SetBool("IsWalking", false);
+            anim3.SetBool("IsWalking", false);
         }
 
         if (transform.position.z >15)
