@@ -54,7 +54,7 @@ public class PlayerControllerBattle2 : MonoBehaviour
             anim.SetBool("IsWalking", false);
         }
 
-        if (transform.position.z >13)
+        if (transform.position.z >15)
         {
             gameManager.GameOver();
         }
