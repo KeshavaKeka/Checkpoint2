@@ -118,9 +118,9 @@ public class EnemyAIBattle2 : MonoBehaviour
             {
                 newPos = RandomNavSphere(startPosition, wanderRadius, -1);
             } while (newPos.z > zUpperLimit || newPos.z < zLowerLimit);
-            anim.SetBool("walking", true);
             navAgent.SetDestination(newPos);
             yield return new WaitForSeconds(2);
+            anim.SetBool("walking", true);
         }
     }
 
