@@ -42,9 +42,21 @@ public class MazeGenerator : MonoBehaviour
             {
                 if (i == 0 || i == width - 2 || j == 0 || j == height - 2)
                 {
-                    maze[i, j] = 1;
-                    Vector3 position = new Vector3(i - width / 2f + 1f, wall[1].transform.position.y, j - height / 2f + 1f);
-                    Instantiate(wall[1], position, Quaternion.identity);
+                    int wid;
+                    if((width/2)%2 == 1)
+                    {
+                        wid = width / 2 - 1;
+                    }
+                    else
+                    {
+                        wid = width / 2;
+                    }
+                    if(i != wid)
+                    {
+                        maze[i, j] = 1;
+                        Vector3 position = new Vector3(i - width / 2f + 1f, wall[1].transform.position.y, j - height / 2f + 1f);
+                        Instantiate(wall[1], position, Quaternion.identity);
+                    }
                 }
             }
         }
