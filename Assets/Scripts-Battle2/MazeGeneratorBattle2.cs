@@ -36,93 +36,18 @@ public class MazeGenerator : MonoBehaviour
     {
         maze = new int[width, height];
 
-        // Initialize the maze with walls
-        for (int x = 0; x < width; x++)
+        for (int i = 0; i < width; i+=2)
         {
-            for (int y = 0; y < height; y++)
+            for (int j = 0; j < height; j+=2)
             {
-                maze[x, y] = 1;
-            }
-        }
-
-        // Ensure the starting points are not blocked
-        maze[1, 10] = 0;
-        maze[2, 10] = 0;
-
-        Vector2Int start = new Vector2Int(1, 10);
-        stack.Push(start);
-        maze[start.x, start.y] = 0;
-
-        while (stack.Count > 0)
-        {
-            Vector2Int current = stack.Peek();
-            List<Vector2Int> neighbors = GetUnvisitedNeighbors(current);
-
-            if (neighbors.Count > 0)
-            {
-                Vector2Int chosen = neighbors[Random.Range(0, neighbors.Count)];
-                maze[chosen.x, chosen.y] = 0;
-                maze[(current.x + chosen.x) / 2, (current.y + chosen.y) / 2] = 0;
-                stack.Push(chosen);
-            }
-            else
-            {
-                stack.Pop();
-            }
-        }
-
-        for (int x = 0; x < width; x++)
-        {
-            for (int y = 0; y < height; y++)
-            {
-                if (maze[x, y] == 1 && HasAdjacentWall(x, y) && Random.value > 0.4f)  // Increase wall density slightly
+                if (i == 0 || i == width - 2 || j == 0 || j == height - 2)
                 {
-                    maze[x, y] = 1;
-                }
-                else if (maze[x, y] == 1)
-                {
-                    maze[x, y] = 0;
+                    maze[i, j] = 1;
+                    Vector3 position = new Vector3(i - width / 2f + 1f, wall[1].transform.position.y, j - height / 2f + 1f);
+                    Instantiate(wall[1], position, Quaternion.identity);
                 }
             }
         }
-
-        for (int x = 0; x < width; x++)
-        {
-            for (int y = 0; y < height; y++)
-            {
-                if (maze[x, y] == 1)
-                {
-                    int index = Random.Range(1, 6)/5;
-                    GameObject spawnWall = wall[index];
-                    Vector3 pos = new Vector3(x - width / 2f + 0.5f, spawnWall.transform.position.y , y - height / 2f + 1);
-                    Instantiate(spawnWall, pos, Quaternion.identity, transform);
-                }
-            }
-        }
-    }
-
-    List<Vector2Int> GetUnvisitedNeighbors(Vector2Int cell)
-    {
-        List<Vector2Int> neighbors = new List<Vector2Int>();
-
-        if (cell.x > 1 && maze[cell.x - 2, cell.y] == 1)
-            neighbors.Add(new Vector2Int(cell.x - 2, cell.y));
-        if (cell.x < width - 2 && maze[cell.x + 2, cell.y] == 1)
-            neighbors.Add(new Vector2Int(cell.x + 2, cell.y));
-        if (cell.y > 1 && maze[cell.x, cell.y - 2] == 1)
-            neighbors.Add(new Vector2Int(cell.x, cell.y - 2));
-        if (cell.y < height - 2 && maze[cell.x, cell.y + 2] == 1)
-            neighbors.Add(new Vector2Int(cell.x, cell.y + 2));
-
-        return neighbors;
-    }
-
-    bool HasAdjacentWall(int x, int y)
-    {
-        return (x > 0 && maze[x - 1, y] == 1) ||
-               (x < width - 1 && maze[x + 1, y] == 1) ||
-               (y > 0 && maze[x, y - 1] == 1) ||
-               (y < height - 1 && maze[x, y + 1] == 1);
     }
 
     void SpawnEnemies(int count, float minDistance)
