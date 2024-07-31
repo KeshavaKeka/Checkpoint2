@@ -28,7 +28,8 @@ public class EnemyAIBattle2 : MonoBehaviour
 
     void Start()
     {
-        anim = GameObject.Find("Idle").GetComponent<Animator>();
+        Transform child = transform.Find("Idle");
+        anim = child.GetComponent<Animator>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManagerBattle2>();
         pla = GameObject.Find("Player");
         playerAgent = GameObject.Find("Player").GetComponent<NavMeshAgent>();
