@@ -10,7 +10,7 @@ public class MazeGenerator : MonoBehaviour
     public int width = 13;
     public int height = 20;
 
-    public GameObject wall;
+    public GameObject[] wall;
     public GameObject enemy; // Add a reference to the enemy prefab
 
     private int[,] maze;
@@ -92,8 +92,10 @@ public class MazeGenerator : MonoBehaviour
             {
                 if (maze[x, y] == 1)
                 {
-                    Vector3 pos = new Vector3(x - width / 2f + 0.5f, 0.85f, y - height / 2f + 1);
-                    Instantiate(wall, pos, Quaternion.identity, transform);
+                    int index = Random.Range(1, 6)/5;
+                    GameObject spawnWall = wall[index];
+                    Vector3 pos = new Vector3(x - width / 2f + 0.5f, spawnWall.transform.position.y , y - height / 2f + 1);
+                    Instantiate(spawnWall, pos, Quaternion.identity, transform);
                 }
             }
         }
