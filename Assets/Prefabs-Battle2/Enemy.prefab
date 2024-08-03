@@ -51,7 +51,7 @@ MonoBehaviour:
   playerAgent: {fileID: 0}
   pla: {fileID: 0}
   torchLight: {fileID: 1169644313207712607}
-  detectionRadius: 6
+  detectionRadius: 4
   closeDetectionRadius: 2
   chaseSpeed: 4
   wanderSpeed: 4
