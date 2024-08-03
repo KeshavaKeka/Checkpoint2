@@ -553,8 +553,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 247170271}
+  - component: {fileID: 247170272}
   m_Layer: 0
-  m_Name: Enimies
+  m_Name: Enemies
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -575,6 +576,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &247170272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 247170270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7810636888864aa5971cc8fd4bd2283, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyPrefab: {fileID: 2313702984200649923, guid: 76ef7ea15aece4f34b91454e994a0b1d,
+    type: 3}
+  numberOfEnemies: 5
+  minX: -10
+  maxX: 10
+  minZ: -10
+  maxZ: 10
+  minimumDistance: 5
+  navMeshSampleDistance: 1
 --- !u!1 &295520986
 GameObject:
   m_ObjectHideFlags: 0
@@ -739,7 +761,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: 0.24759093, y: 0, z: 0, w: 0.96886474}
-  m_LocalPosition: {x: 4.97, y: 3.86, z: -14.8}
+  m_LocalPosition: {x: -1.3400005, y: 3.86, z: -17.019999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1537,7 +1559,7 @@ Transform:
   m_GameObject: {fileID: 724611872}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 6.61, y: 0.601, z: -12.38}
+  m_LocalPosition: {x: 0.3, y: 0.112, z: -14.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1609,9 +1631,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.2533388
-  m_Height: 1
+  m_Height: 1.1022447
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.5444446, z: 0}
 --- !u!1 &765638705
 GameObject:
   m_ObjectHideFlags: 0
