@@ -91,22 +91,39 @@ public class EnemyAIBattle2 : MonoBehaviour
                 }
             }
         }
-
-        // Close detection
-        if (!isChasing && distanceToPlayer <= closeDetectionRadius)
+        if (distanceToPlayer <= closeDetectionRadius)
         {
+            Debug.Log("Checking close detection");
             RaycastHit hit;
             Vector3 directionToPlayer = (player.position - transform.position).normalized;
             if (Physics.Raycast(transform.position, directionToPlayer, out hit, closeDetectionRadius))
             {
+                Debug.Log("Raycast hit something: " + hit.transform.name);
                 if (hit.transform == player)
                 {
+                    Debug.Log("Player detected in close range!");
                     isChasing = true;
                     lastSightTime = Time.time;
                     StopCoroutine(Wander());
                 }
             }
         }
+        // Close detection
+        //if (!isChasing && distanceToPlayer <= closeDetectionRadius)
+        //{
+        //    RaycastHit hit;
+        //    Vector3 directionToPlayer = (player.position - transform.position).normalized;
+        //    if (Physics.Raycast(transform.position, directionToPlayer, out hit, closeDetectionRadius))
+        //    {
+        //        if (hit.transform == player)
+        //        {
+        //            isChasing = true;
+        //            lastSightTime = Time.time;
+        //            StopCoroutine(Wander());
+        //        }
+        //    }
+        //}
+
     }
 
     IEnumerator Wander()
